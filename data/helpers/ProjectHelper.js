@@ -26,15 +26,17 @@ function findTask() {
   return db('task');
 }
 
-function findById(id) {
-  return db('projects').where({ id: Number(id) });
+function findById(id){
+  return db('projects')
+      .where({ id })
+      .first()
 }
 
 function insert(project) {
   return db('projects')
     .insert(project)
     .then(ids => {
-      return getById(ids[0]);
+      return findById(ids[0]);
     });
 }
 
@@ -42,7 +44,7 @@ function insertResource(resource) {
   return db('resource')
     .insert(resource)
     .then(ids => {
-      return getById(ids[0]);
+      return findById(ids[0]);
     });
 }
 
@@ -50,7 +52,7 @@ function insertTask(task) {
   return db('tasks')
     .insert(task)
     .then(ids => {
-      return getById(ids[0]);
+      return findById(ids[0]);
     });
 }
 

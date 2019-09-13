@@ -33,14 +33,30 @@ router.get('/task', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    
-});
+  const project = req.body;
+      db.insert(project)
+      .then(newProject => {
+        res.status(201).json(newProject);
+      })
+      .catch (err => {
+        res.status(500).json({ message: 'Failed to create new step' });
+  });
+})
+  
 
-router.post('/', (req, res) => {
-    
-});
+router.post('/resource', (req, res) => {
+    const resource = req.body;
+    db.insert(resource)
+    .then(newResource => {
+      res.status(201).json(newResource);
+    })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed REE to create new step' });
+    })
+})    
 
-router.post('/', (req, res) => {
+
+router.post('/task', (req, res) => {
     
 });
 
