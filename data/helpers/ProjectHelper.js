@@ -23,7 +23,9 @@ function findResource() {
 }
 
 function findTask() {
-  return db('task');
+  return db('task')
+    .join('projects', 'task.task_id', 'projects.id')
+    .select('*')
 }
 
 function findById(id){
@@ -49,7 +51,7 @@ function insertResource(resource) {
 }
 
 function insertTask(task) {
-  return db('tasks')
+  return db('task')
     .insert(task)
     .then(ids => {
       return findById(ids[0]);

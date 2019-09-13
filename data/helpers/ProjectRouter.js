@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
 
 router.post('/resource', (req, res) => {
     const resource = req.body;
-    db.insert(resource)
+    db.insertResource(resource)
     .then(newResource => {
       res.status(201).json(newResource);
     })
@@ -57,7 +57,14 @@ router.post('/resource', (req, res) => {
 
 
 router.post('/task', (req, res) => {
-    
-});
+    const task = req.body;
+    db.insertTask(task)
+    .then(newTask => {
+      res.status(201).json(newTask);
+    })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed REE to create new step' });
+    })
+})
 
 module.exports = router
