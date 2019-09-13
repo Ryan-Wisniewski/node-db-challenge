@@ -8,3 +8,4 @@ exports.seed = function(knex) {
         { description: 'cry because it probably no work', notes: 'but keep working', task_id: 3}
       ]);
 };
+
